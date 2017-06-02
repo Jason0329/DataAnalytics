@@ -52,6 +52,7 @@ namespace DataAnalytics
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("hi");
             InputCarFileController InputCarFile = new InputCarFileController();
             CarAnalytics Analyics = new CarAnalytics();
             OutputCarFileController output = new OutputCarFileController();

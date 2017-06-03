@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BloggerEmailDataColleciontService\BloggerAnalytics.cs" />
+    <Compile Include="BloggerEmailDataColleciontService\InputBloggerFileController.cs" />
     <Compile Include="CarControllers\CarAnalytics.cs" />
     <Compile Include="CarControllers\OutputCarFileController.cs" />
     <Compile Include="Controllers\AnalyticsFacebookController.cs" />

@@ -1,4 +1,5 @@
 ﻿using DataAnalytics.AnalyticData;
+using DataAnalytics.BloggerEmailDataColleciontService;
 using DataAnalytics.CarControllers;
 using DataAnalytics.Controllers;
 using DataAnalytics.Interface;
@@ -52,7 +53,7 @@ namespace DataAnalytics
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("hi");
+            
             InputCarFileController InputCarFile = new InputCarFileController();
             CarAnalytics Analyics = new CarAnalytics();
             OutputCarFileController output = new OutputCarFileController();
@@ -63,6 +64,16 @@ namespace DataAnalytics
             List<string> AllData = Analyics.Analyitcs(ref AllFiles);
 
             output.OutputFile(ref AllData);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            InputBloggerFileController BlogFile = new InputBloggerFileController();
+            BloggerAnalytics Analytics = new BloggerAnalytics();
+            BlogFile.GetSourceStream();
+            List<string> AllFiles = BlogFile.ReturnFiles();
+            Analytics.Analyitcs(ref AllFiles);
+
         }
     }
 }

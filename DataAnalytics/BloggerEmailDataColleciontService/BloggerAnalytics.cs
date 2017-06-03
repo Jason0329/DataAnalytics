@@ -32,18 +32,54 @@ namespace DataAnalytics.BloggerEmailDataColleciontService
                 int ii = BoardStreams[i].Length;
                 _data.Name= BoardStreams[i].Substring(StartIndex,EndIndex  - StartIndex);
 
-                ///Get Email
-                int EmailEndIndex = BoardStreams[i].IndexOf("@gmail.com");
+                string EmailDomain= "@yahoo.com.tw";
 
+                ///Get Email
+                int EmailEndIndex = BoardStreams[i].IndexOf("@yahoo.com.tw");
+
+                if (EmailEndIndex < 0)
+                {
+                    EmailEndIndex = BoardStreams[i].IndexOf("@gmail.com");
+                    EmailDomain = "@gmail.com";
+                }
+                if (EmailEndIndex < 0)
+                {
+                    EmailEndIndex = BoardStreams[i].IndexOf("@hotmail.com");
+                    EmailDomain = "@hotmail.com";
+                }
+                if (EmailEndIndex < 0)
+                {
+                    EmailEndIndex = BoardStreams[i].IndexOf("@outlook");
+                    EmailDomain = "@outlook.askfdjljla";
+                }
+                if (EmailEndIndex < 0)
+                {
+                    EmailEndIndex = BoardStreams[i].IndexOf("@kimo.com");
+                    EmailDomain = "@kimo.com";
+                }
+                if (EmailEndIndex < 0)
+                {
+                    EmailEndIndex = BoardStreams[i].IndexOf("@msa");
+                    EmailDomain = "@outlook.askfdjljla";
+                }
                 if (EmailEndIndex < 0)
                 {
                     Data.Add(_data);
                     continue;
                 }
 
-                int EmailStartIndex = BoardStreams[i].LastIndexOf(">", EmailEndIndex);
+                int EmailStartIndex=0;//= BoardStreams[i].LastIndexOf(">", EmailEndIndex);
 
-                _data.Email = BoardStreams[i].Substring(EmailStartIndex, EmailEndIndex - EmailStartIndex) +"@gmail.com";
+                for (int j = EmailEndIndex-1; j > 0; j--)
+                {
+                    if(!IsNatural_Number(BoardStreams[i][j].ToString()))
+                    {
+                        EmailStartIndex = j;
+                        break;
+                    }
+                }
+
+                _data.Email = BoardStreams[i].Substring(EmailStartIndex +1, EmailEndIndex-EmailStartIndex + EmailDomain.Length) ;
 
 
 
@@ -53,6 +89,16 @@ namespace DataAnalytics.BloggerEmailDataColleciontService
             }
 
             return Data;
+        }
+
+        public bool IsNatural_Number(string str)
+        {
+
+            System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(@"^[A-Za-z_0-9\.\-]");
+            //System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(@"[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$");
+
+            return reg1.IsMatch(str);
+
         }
     }
 

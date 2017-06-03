@@ -37,11 +37,11 @@ namespace DataAnalytics
                     IInput InputData = new InputFileController(i + ".txt");
 
                     IAnalyticData AnalyticData = new AnalyticsFacebook(ref _selector);
-                    IOutput Output = new OutputCsvFileController(i + "output.csv");
+                    //IOutput Output = new OutputCsvFileController(i + "output.csv");
 
-                    string tt = InputData.GetSourceStream();
-                    AllData = AnalyticData.AnalyticsMethod(tt);
-                    Output.OutputFile(ref AllData);
+                    //string tt = InputData.GetSourceStream();
+                    //AllData = AnalyticData.AnalyticsMethod(tt);
+                    //Output.OutputFile(ref AllData);
                 }
                 catch (Exception eee)
                 {
@@ -72,7 +72,11 @@ namespace DataAnalytics
             BloggerAnalytics Analytics = new BloggerAnalytics();
             BlogFile.GetSourceStream();
             List<string> AllFiles = BlogFile.ReturnFiles();
-            Analytics.Analyitcs(ref AllFiles);
+            List<_Data> AnalyticedData= Analytics.Analyitcs(ref AllFiles);
+            BloggerEmailDataColleciontService.OutputCsvFileController output = new BloggerEmailDataColleciontService.OutputCsvFileController();
+
+            output.OutputData(ref AnalyticedData);
+            
 
         }
     }

@@ -22,11 +22,11 @@ namespace DataAnalytics.BloggerEmailDataColleciontService
             for (int i = 0; i < BoardStreams.Count; i++)
             {
                 ///Get blog name
-                int StartIndex = BoardStreams[i].IndexOf("target=\"_blank\" href=\"https://www.pixnet.net/blog/profile");
+                int StartIndex = BoardStreams[i].IndexOf("<!-- saved from url=") ;
 
                 if (StartIndex < 0) continue;
 
-                int EndIndex = BoardStreams[i].IndexOf("\">", StartIndex);
+                int EndIndex = BoardStreams[i].IndexOf("/blog", StartIndex);
 
                 _Data _data = new _Data();
                 int ii = BoardStreams[i].Length;

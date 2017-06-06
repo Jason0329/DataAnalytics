@@ -17,7 +17,7 @@ namespace DataAnalytics.BloggerEmailDataColleciontService
 
         public InputBloggerFileController()
         {
-            AllFile = Directory.GetFiles(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\BloggerEmailProfile");
+            AllFile = Directory.GetFiles(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\EmailData");
             AllStream = new List<string>();
         }
 
